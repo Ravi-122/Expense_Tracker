@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Dashboard of Student</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='exp.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="nav">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/qr.png') }}" alt="Logo" width="60">
+        </div>
+        <div class="fea">
+            <a href="{{ url_for('welcome') }}">Home</a>
+            <a href="{{ url_for('pocket_money') }}">Pocketmoney</a>
+            <a href="{{ url_for('addexpenses') }}">Add Expense</a>
+            <a href="{{ url_for('my_expenses') }}">View Expenses</a>
+            <a href="{{url_for('profile')}}">About</a>
+
+        </div>
+        <div class="aut">
+            <a href="{{ url_for('logout') }}" class="login">Logout</a>
+        </div>
+    </div>
+<body>
+    <h2>My Expenses</h2>
+    <a href="{{ url_for('addexpenses') }}">Add New Expense</a><br><br>
+
+    {% if expenses %}
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+        {% for expense in expenses %}
+        <tr>
+            <td>{{ expense.title }}</td>
+            <td>{{ expense.amount }}</td>
+            <td>{{ expense.date.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td>
+                <a href="{{ url_for('delete_expense', expense_id=expense.id) }}">Delete</a>
+                
+            </td>
+            <td>
+                <a href="{{ url_for('edit_expense', expense_id=expense.id) }}">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td><strong>Total</strong></td>
+            <td colspan="3"><strong>{{ total_amount }}</strong></td>
+        </tr>
+    </table>
+    {% else %}
+    <p>No expenses found. Add one now!</p>
+    {% endif %}
+</body>
+</html>

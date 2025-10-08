@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Dashboard of Student</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='feeview.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="nav">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/qr.png') }}" alt="Logo" width="60">
+        </div>
+        <div class="fea">
+            <a href="{{ url_for('welcome') }}">Home</a>
+            <a href="{{ url_for('report') }}">Income</a>
+            <a href="{{ url_for('freeadd') }}">Add Expense</a>
+            <a href="{{ url_for('feeview') }}">View Expenses</a>
+            <a href="{{ url_for('profile') }}">About</a>
+        </div>
+        <div class="aut">
+            <a href="{{ url_for('logout') }}" class="login">Logout</a>
+        </div>
+    </div>
+        <h2>Freelance Expense Records</h2>
+
+        {% if exp %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Amount (₹)</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fre in exp %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>₹{{ '%.2f'|format(fre.amount) }}</td>
+                    <td>{{ fre.date.strftime('%Y-%m-%d') }}</td>
+                    <td>{{ fre.category }}</td>
+                    <td><a href="{{url_for('delete_exp',fee_id=fre.id)}}">Delete</a></td>
+                    <td><a href="{{url_for('update',exp_id=fre.id)}}">update</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="total">
+            Total Amount: ₹{{ '%.2f'|format(total_amount) }}
+        </div>
+
+        {% else %}
+        <p style="text-align:center; color:#666;">No freelance records found.</p>
+        {% endif %}
+
+       
+    </div>
+</body>
+</html>

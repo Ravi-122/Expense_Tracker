@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        
+        <Title>Expense Tracker</Title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    </head>
+    <body>
+        <div class="nav">
+            <div class="logo">
+                 <img src="{{ url_for('static', filename='images/images.jpg') }}" alt="Logo" width="10%">
+            </div>
+            <div class="fea">
+                <a href="#">Home</a>
+               <a href="#features">Features</a>
+                <a href="#community-feedback">Community</a>
+                <a href="#contact">about</a>
+            </div>
+            <div class="aut">
+                <a href="{{ url_for('login') }}" class="login">Login</a>
+                <a href="{{ url_for('signup') }}" class="signup">Sign up</a>
+
+            </div>
+            
+        </div>
+
+
+    <section class="main">
+        <div class="pro">
+            <h1>Live a Better Life by using Expensive tracker</h1>
+            <p>Track your daily uses and adjust your money.</p>
+            <p>Today Saving is tomorrow way of living.</p>
+            <form action="{{ url_for('signup') }}" method="get">
+                <input type="email" id="emailInput" placeholder="Your work email" />
+                <button id="startBtn">Get Started</button>
+            </form>
+        </div>
+        <div class="image">
+            <!-- You can put an illustrative image or screenshot here -->
+             <img src="{{ url_for('static', filename='images/hi.jpg') }}" alt="App screenshot or illustration" />
+            </div>
+  </section>
+
+      </div>
+      <section id="features" class="features">
+    <h2>Features</h2>
+    <div class="feature-cards">
+      <div class="feature-card">
+        <h3>Security</h3>
+        <p>We ensure the security of your data and make certain it is never misused or accessed by unauthorized individuals</p>
+      </div>
+      <div class="feature-card">
+        <h3>Claculating</h3>
+        <p>We calculate your total income and total expenses so you can easily track and review your finances anytime.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Graphs</h3>
+        <p>We analyze your data and present it through interactive graphs for better understanding and insights..</p>
+      </div>
+      <!-- Add more feature cards as needed -->
+    </div>
+  </section>
+
+  <section id="community-feedback" class="community-feedback">
+    <h2>What Our Community Says</h2>
+    <div class="feedback-steps">
+      <div class="feedback">
+        <span class="feedback-number">1</span>
+        <h4>Student</h4>
+        <p>Hi, I’m Raj, a student. I’ve been using the Expense Tracker, and it’s been a game-changer! It helped me manage my pocket money effectively and clearly showed me where I spend the most. Now I can plan better and save smarter!.</p>
+      </div>
+      <div class="feedback">
+        <span class="feedback-number">2</span>
+        <h4>Individual</h4>
+        <p>Hello, I’m Reo. Using the Expense Tracker has helped me manage my savings efficiently and live a more organized, stress-free life. It’s truly made budgeting simple and effective!</p>
+      </div>
+      <div class="feedback">
+        <span class="feedback-number">3</span>
+        <h4>Freelancer</h4>
+        <p>Hi, I’m Suraj a freelancer. I’ve been using the Expense Tracker to manage my money effectively, and it’s even helped me boost my business by keeping my finances organized and under control!.</p>
+      </div>
+    </div>
+</section>
+<footer id="contact">
+    <div class="footer-content">
+      <div class="footer-logo">Expense Trackers</div>
+      <div class="footer-links">
+        <a href="#">About</a> ·
+        <a href="#">Blog</a> ·
+        <a href="#">Terms</a> ·
+        <a href="#">Privacy</a>
+      </div>
+      <div class="footer-copy">© 2025 YourApp, Inc.</div>
+    </div>
+  </footer>
+
+
+
+
+
+    </body>
+</html>

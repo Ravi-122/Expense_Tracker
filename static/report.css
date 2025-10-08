@@ -1,0 +1,146 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  line-height: 1.6;
+  color: #222;
+  background-color: #fafafa;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #007bff;
+}
+
+/* Navbar container */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Logo */
+.logo img {
+    height: 45px;
+    width: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.logo img:hover {
+    transform: scale(1.08);
+}
+
+/* Middle links */
+.fea {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+.fea a {
+  font-weight: 500;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+.fea a::after {
+ font-weight: 500;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+.fea a:hover {
+     border-bottom: 2px solid #007bff;
+}
+
+
+/* Auth links (Login/Signup) */
+.aut {
+  margin-left: 0.7rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.aut a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Login button */
+.aut .login {
+  background: linear-gradient(90deg, #007bff, #00a8ff);
+  color: white;
+  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.3);
+}
+.aut .login:hover {
+    background: #ecf0f1;
+    color: #2c3e50;
+}
+/* Inputs and selects */
+form input[type="number"],
+form select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input[type="number"]:focus,
+form select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+/* Submit button */
+form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Result section */
+.result {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #e9f5ff;
+    border-left: 5px solid #007bff;
+    border-radius: 10px;
+}
+
+.result p {
+    font-size: 1.1rem;
+    margin: 8px 0;
+}

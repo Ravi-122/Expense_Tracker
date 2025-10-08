@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    
+    <title>Login Page</title>
+</head>
+<body>
+    
+
+    <div class="loginup">
+            <h2>Login</h2>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="flash">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <form method="POST" action="{{ url_for('login') }}">
+                <label for="username">User Name:</label><br>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required><br><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <p>Don't have an account? <a href="{{ url_for('signup') }}">Signup</a></p>
+            <p>Forget Password? <a href="{{ url_for('forgetpassword') }}">Password</a></p>
+    </div>
+    <script src="{{ url_for('static', filename='login.js') }}"></script>
+
+</body>
+</html>

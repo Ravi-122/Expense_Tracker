@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #74ebd5, #9face6);
+    animation: gradientBG 15s ease infinite;
+}
+
+/* Login box */
+.loginup {
+    background: #fff;
+    padding: 40px 35px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
+}
+
+/* Heading */
+.loginup h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Flash messages */
+.flash {
+    background: #ffe0e0;
+    color: #b30000;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Labels */
+label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+}
+
+/* Input fields */
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #74ebd5, #9face6);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Bottom text */
+p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+a {
+    color: #6a5acd;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+    
+
+/* These is for Login form*/
+/* .loginup form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient( #dfeb74, #78c70a);
+    padding: 40px;
+    border-radius: 18px;
+    width: 100%;
+    margin-top: 3%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+} */
+/*These is used for the user name and password entry matter*/
+/* .loginup input[type="text"],
+.loginup input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+ 
+}
+  /* These Css is for login button*/
+ /* .loginup button {
+   height: 60px;
+    width: 300px;
+    margin: 20px auto;
+    box-shadow: 10px 10px 30px rgb(254, 215, 188);
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+     background-color: transparent;
+    position: relative;
+    cursor: pointer;
+} */
+
+
+
+/* .form-box p {
+    height: 100%;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 40px;
+}
+
+.form-box a {
+    color: #1abc9c;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.form-box a:hover {
+    text-decoration: underline;
+    color: #16a085;
+}
+
+@media (max-width: 768px) {
+    .loginup {
+        width: 90%;
+        padding: 20px;
+    } */
+ 

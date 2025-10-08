@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Charts</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+.chart-container {
+    width: 400px;   /* desired width */
+    height: 250px;  /* desired height */
+    margin: auto;
+}
+</style>
+</head>
+<body>
+
+
+<h2>Category Distribution</h2>
+<div class="chart-container">
+    <canvas id="categoryChart"></canvas>
+</div>
+
+    <script>
+
+const categories = {{ categories_json | safe }};
+const category_totals = {{ category_totals_json | safe }};
+
+const ctxCategory = document.getElementById('categoryChart').getContext('2d');
+new Chart(ctxCategory, {
+    type: 'pie',
+    data: {
+        labels: categories,
+        datasets: [{
+            data: category_totals,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)',
+                'rgba(199, 199, 199, 0.6)'
+            ]
+        }]
+    },
+    options: {
+        responsive: false,          
+        maintainAspectRatio: false  
+    }
+});
+
+    </script>
+</body>
+</html>

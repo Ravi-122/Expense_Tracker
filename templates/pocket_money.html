@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Dashboard of Student</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='pocketmoney.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="nav">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/qr.png') }}" alt="Logo" width="60">
+        </div>
+        <div class="fea">
+            <a href="{{ url_for('welcome') }}">Home</a>
+            <a href="{{ url_for('pocket_money') }}">Pocketmoney</a>
+            <a href="{{ url_for('addexpenses') }}">Add Expense</a>
+            <a href="{{ url_for('my_expenses') }}">View Expenses</a>
+            <a href="{{url_for('profile')}}">About</a>
+
+        </div>
+        <div class="aut">
+            <a href="{{ url_for('logout') }}" class="login">Logout</a>
+        </div>
+    </div>
+    <form method="POST">
+        <label for="income">Monthly Pocket Money:</label>
+        <input type="number" name="income" step="0.01" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if remaining is not none %}
+        <h2>Remaining Pocket Money: {{ remaining }}</h2>
+        <p>{{ message }}</p>
+    {% endif %}
+
+</body>
+</html>

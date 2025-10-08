@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='student.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/qr.png') }}" alt="Logo" width="60">
+        </div>
+        <div class="fea">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('pocket_money') }}">Pocketmoney</a>
+            <a href="{{ url_for('addexpenses') }}">Add Expense</a>
+            <a href="{{ url_for('my_expenses') }}">View Expenses</a>
+            <a href="{{ url_for('profile') }}">About</a>
+        </div>
+        <div class="aut">
+            <a href="{{ url_for('logout') }}" class="login">Logout</a>
+        </div>
+    </div>
+
+    <h1>Welcome {{ username }} (To Student Dashboard)</h1>
+    {% if total_pocket > 0 or total_expenses > 0 %}
+    <!-- Display container only if user has added pocket money or expenses -->
+    <div class="container">
+        <div class="box">
+            <div>Total Pocket Money</div>
+            <div>{{ total_pocket }}</div>
+        </div>
+        <div class="box-2">
+            <div>Total Expenses</div>
+            <div>{{ total_expenses }}</div>
+        </div>
+        <div class="box remaining">
+            <div>Remaining Money</div>
+            <div>{{ remaining }}</div>
+        </div>
+    </div>
+    <div class="chart-container" style="max-width:500px; margin: 0 auto 50px;">
+    <canvas id="expensesPieChart"></canvas>
+</div>
+{% else %}
+    <!-- Display intro for new users or users with no data -->
+    <div class="intro">
+        <p>This dashboard is designed for students.</p>
+        <ul>
+            <li>Track your study expenses</li>
+            <li>View your budget reports</li>
+            
+        </ul>
+    </div>
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="nav">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/qr.png') }}" alt="Logo" width="60">
+        </div>
+        <div class="fea">
+            <a href="{{ url_for('welcome') }}">Home</a>
+
+            {% if current_user.user_type == 'student' %}
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('pocket_money') }}">Pocketmoney</a>
+            <a href="{{ url_for('addexpenses') }}">Add Expense</a>
+            <a href="{{ url_for('my_expenses') }}">View Expenses</a>
+            <a href="{{ url_for('profile') }}">About</a>
+            {% elif current_user.user_type == 'freelancer' %}
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('report') }}">Pocketmoney</a>
+                <a href="{{ url_for('freeadd') }}">Add Expense</a>
+                <a href="{{ url_for('feeview') }}">View Expenses</a>
+                <a href="{{ url_for('profile') }}">About</a>
+            {% elif current_user.user_type == 'individual' %}
+            <a href="{{ url_for('welcome') }}">Home</a>
+            <a href="{{ url_for('moneyuse') }}">Expensess</a>
+            <a href="{{ url_for('inadd') }}">Add Expense</a>
+            <a href="{{ url_for('inexpenses') }}">View Expenses</a>
+            <a href="{{ url_for('profile') }}">About</a>
+            {% endif %}
+
+       
+        </div>
+        <div class="aut">
+            <a href="{{ url_for('logout') }}" class="login">Logout</a>
+        </div>
+    </div>
+
+    <div class="profile-card">
+        <h2>My Profile</h2>
+        <div class="profile-image">
+            <div class="profile-item"><strong>Username:</strong> {{ user.username }}</div>
+            <div class="profile-item"><strong>Email:</strong> {{ user.email }}</div>
+            <div class="profile-item"><strong>User Type:</strong> {{ user.user_type }}</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="nav">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/qr.png') }}" alt="Logo" width="60">
+        </div>
+        <div class="fea">
+            <a href="{{ url_for('chart-data') }}">Home</a>
+            <a href="#">Features</a>
+            <a href="{{ url_for('addexpenses') }}">Add Expense</a>
+            <a href="{{ url_for('my_expenses') }}">View Expenses</a>
+            <a href="#">About</a>
+        </div>
+        <div class="aut">
+            <a href="{{ url_for('logout') }}" class="login">Logout</a>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div class="main">
+        <h1>Welcome, {{ username }}!</h1>
+        <p>Track and manage your expenses easily.</p>
+
+         <!-- {% if role=='student' %}
+         <p>Welcome to the student Dashboard</p>
+         {%elif role == 'individual' %} 
+         <p>Welcome to t Individual Dashboard</p>
+         {%elif role=='freelancer' %}
+         <p>Welcome to the Freelancer Dashboard</p>
+         {% endif %} -->
+
+        <!-- Action Buttons -->
+        <div class="actions">
+            <a href="{{ url_for('addexpenses') }}" class="btn">Add Expense</a>
+            <a href="{{ url_for('my_expenses') }}" class="btn">View Expenses</a>
+         
+        </div>
+
+        <!-- Expenses List -->
+        {% if expenses %}
+            <h2>My Expenses</h2>
+            <table border="1" cellpadding="8" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for exp in expenses %}
+                    <tr>
+                        <td>{{ exp.title }}</td>
+                        <td>{{ exp.amount }}</td>
+                        <td>{{ exp.date.strftime('%Y-%m-%d') }}</td>
+                        <td>
+                            <a href="{{ url_for('delete_expense', expense_id=exp.id) }}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No expenses found. Click "Add Expense" to start tracking.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

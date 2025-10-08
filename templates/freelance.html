@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker Dashboard of Student</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='fees.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="nav">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/qr.png') }}" alt="Logo" width="60">
+        </div>
+        <div class="fea">
+            <a href="{{ url_for('welcome') }}">Home</a>
+            <a href="{{ url_for('report') }}">Income</a>
+            <a href="{{ url_for('freeadd') }}">Add Expense</a>
+            <a href="{{ url_for('feeview') }}">View Expenses</a>
+            <a href="{{ url_for('profile') }}">About</a>
+        </div>
+        <div class="aut">
+            <a href="{{ url_for('logout') }}" class="login">Logout</a>
+        </div>
+    </div>
+
+<body>
+      
+  <h1>Welcome {{ username }} (To the Freelancer)</h1>
+
+{% if total_income > 0 or total_expense > 0 %}
+    <!-- Display container only if the user has added income or expenses -->
+    <div class="container">
+        <div class="box">
+            <div>Total Income</div>
+            <div>₹{{ total_income }}</div>
+        </div>
+        <div class="box-2">
+            <div>Total Expenses</div>
+            <div>₹{{ total_expense }}</div>
+        </div>
+        <div class="box remaining">
+            <div>Remaining Money</div>
+            <div>₹{{ remaining }}</div>
+        </div>
+    </div>
+
+    <!-- Date Filter Form -->
+    <form method="POST" class="filter-form">
+        <label>Start Date:</label>
+        <input type="date" name="start_date" required>
+        <label>End Date:</label>
+        <input type="date" name="end_date" required>
+        <input type="submit" value="Filter">
+    </form>
+
+    {% if start_date and end_date %}
+    <div class="summary">
+        <p>From: <b>{{ start_date }}</b> To: <b>{{ end_date }}</b></p>
+        <p>Total Income: <span class="amount">₹{{ total_income }}</span></p>
+        <p>Total Expenses: <span class="amount">₹{{ total_expense }}</span></p>
+        <p>Remaining Income: <span class="amount">₹{{ remaining }}</span></p>
+    </div>
+    {% endif %}
+
+    <!-- Optional chart -->
+    <div style="width: 50%; height: 50%;display: flex; justify-content: center; align-items: center;">
+    <canvas id="expenseChart"></canvas>
+</div>
+
+<script>
+const ctx = document.getElementById('expenseChart').getContext('2d');
+const expenseChart = new Chart(ctx, {
+    type: 'bar', // or 'pie'
+    data: {
+        labels: {{ category|tojson }},
+        datasets: [{
+            label: 'Expenses by Category (₹)',
+            data: {{ category_values|tojson }},
+            backgroundColor: {{ category_colors|tojson }},
+            borderColor: {{ category_colors|tojson }},
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: 'Expenses by Category' }
+        }
+    }
+});
+</script>
+
+
+{% else %}
+    <!-- Display intro for new users or users with no data -->
+    <div class="intro">
+        <p>This dashboard is designed for freelancers.</p>
+        <ul>
+            <li>Track your work-related income</li>
+            <li>Track your expenses and savings</li>
+            <li>Generate summary reports</li>
+        </ul>
+    </div>
+{% endif %}
+ 
+</body>
+</html>
