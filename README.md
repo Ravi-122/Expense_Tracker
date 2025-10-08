@@ -21,3 +21,8 @@ The Expense Tracker is a web application designed to help users manage and monit
    Expense summary and calculations  
    Interactive graphs for better insights   
    Secure and lightweight backend with SQLite3
+
+## Use Cse of the Expense Tracker
+The main purpose of this project is to help users track their expenses at any point in time.
+By recording and analyzing their spending, users can identify unnecessary expenses and make informed financial decisions.
+This enables better budget management, promotes saving habits, and provides clear insights into daily, monthly, or yearly spending patterns.
