@@ -83,14 +83,15 @@ class Income(db.Model):
 
 
 #Email Config for password reset
-app.config['MAIL_SERVER']='expense-tracker-isps.onrender.com'
-app.config['MAIL_PORT']= 465
-app.config['MAIL_USERNAME']='aigeneratednoreply@gmail.com'
-app.config['MAIL_PASSWORD']='npmm ivwa uhri jwwi'
-app.config['MAIL_USE_TLS']=False
-app.config['MAIL_USE_SSL']=True
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')  # Set in Render env variables
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')  # Set in Render env variables
+app.config['SERVER_NAME'] = 'expense-tracker-isps.onrender.com'
 mail=Mail(app)
-
+s = URLSafeTimedSerializer(app.secret_key)
 # Home route
 @app.route("/")
 def index():
@@ -142,18 +143,14 @@ def login():
 def forgetpassword():
     if request.method == 'POST':
         email = request.form['email']
-        conn = sqlite3.connect('app.db')
-        c = conn.cursor()
-        c.execute("SELECT * FROM user WHERE email=?", (email,))
-        user = c.fetchone()
-        conn.close()
+        user = User.query.filter_by(email=email).first()
 
         if user:
             token = s.dumps(email, salt='email-reset')
             reset_link = url_for('updatepassword', token=token, _external=True)
             message = Message(
                 'Reset Your Password',
-                sender='aigeneratednoreply@gmail.com',
+                sender=app.config['MAIL_USERNAME'],
                 recipients=[email]
             )
             message.body = f'Click this link to reset your password: {reset_link}. If not you, ignore this email.'
@@ -175,13 +172,15 @@ def updatepassword(token):
     if request.method=='POST':
         new_password=request.form['password']
         hashed_password = hashlib.sha256(new_password.encode()).hexdigest()
-        conn=sqlite3.connect('app.db')
-        c=conn.cursor()
-        c.execute('update user SET password=? where email=?',(hashed_password, email))
-        conn.commit()
-        conn.close()
-        flash('Your password has been updated successfully!', 'success')
-        return render_template('login.html')
+        user = User.query.filter_by(email=email).first()
+        if user:
+            user.password = hashed_password
+            db.session.commit()
+            flash('Your password has been updated successfully!', 'success')
+            return redirect(url_for('login'))
+        else:
+            flash('User not found.', 'danger')
+            return redirect(url_for('forgetpassword'))
     return render_template('updatepassword.html')
 
 # Welcome route
