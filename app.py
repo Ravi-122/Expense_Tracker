@@ -83,7 +83,7 @@ class Income(db.Model):
 
 
 #Email Config for password reset
-app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_SERVER']='expense-tracker-isps.onrender.com'
 app.config['MAIL_PORT']= 465
 app.config['MAIL_USERNAME']='aigeneratednoreply@gmail.com'
 app.config['MAIL_PASSWORD']='npmm ivwa uhri jwwi'
