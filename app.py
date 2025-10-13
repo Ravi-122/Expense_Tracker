@@ -426,7 +426,7 @@ def pocket_money():
 
             # Calculate total pocket money
             total_pocket = db.session.query(func.sum(pocketmoney.amount))\
-                .filter(pocketmoney.user_id == current_user.id).scalar() or 0
+                .filter(pocketmoney.amount == current_user.id).scalar() or 0
 
             remaining = total_pocket - total_expenses
             message = f"Your remaining pocket money is {remaining:.2f}"
